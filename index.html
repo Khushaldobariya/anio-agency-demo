@@ -33,6 +33,7 @@
         body {
             height: 100%;
             overflow: hidden;
+            overscroll-behavior: none;
         }
 
         #smooth-wrapper {
@@ -775,7 +776,7 @@
 
                 onDown: (self) => {
                 if (isAnimating) return;
-                     const forward = self && self.isTouch ? false : true;
+                    const forward = true;
                 if (current === 2 && window.pfHorizontalSwiper) {
                     if (window.pfHorizontalSwiper.animating) return;
                     if (forward) {
@@ -794,7 +795,7 @@
                 },
                 onUp: (self) => {
                 if (isAnimating) return;
-               const forward = self && self.isTouch ? true : false;
+                    const forward = false;
                 if (current === 2 && window.pfHorizontalSwiper) {
                     if (window.pfHorizontalSwiper.animating) return;
                     if (forward) {
