@@ -811,6 +811,27 @@
                     }
                 }
                 gotoSection(current + (forward ? 1 : -1));
+            },
+            onChangeY: (self) => {
+                if (isAnimating) return;
+                const isWheel = self && self.event && self.event.type === "wheel";
+                const isTouch = self && self.isTouch;
+                const forward = isWheel ? (self.deltaY > 0) : (isTouch ? (self.deltaY < 0) : (self.deltaY > 0));
+                if (current === 2 && window.pfHorizontalSwiper) {
+                    if (window.pfHorizontalSwiper.animating) return;
+                    if (forward) {
+                        if (!window.pfHorizontalSwiper.isEnd) {
+                            window.pfHorizontalSwiper.slideNext();
+                            return;
+                        }
+                    } else {
+                        if (!window.pfHorizontalSwiper.isBeginning) {
+                            window.pfHorizontalSwiper.slidePrev();
+                            return;
+                        }
+                    }
+                }
+                gotoSection(current + (forward ? 1 : -1));
             }
         });
 
