@@ -828,7 +828,8 @@
             ,
             onChangeY: (self) => {
                 if (isAnimating) return;
-                const forward = self && typeof self.deltaY === "number" ? self.deltaY > 0 : true;
+                if (!self || !self.event || self.event.type !== "wheel") return;
+                const forward = self.deltaY > 0;
                 if (current === 2 && window.pfHorizontalSwiper) {
                     if (window.pfHorizontalSwiper.animating) return;
                     if (forward) {
