@@ -755,31 +755,17 @@
                 header.classList.remove("scrolled");
             }
 
-            const smootherInst = typeof ScrollSmoother !== "undefined" && ScrollSmoother.get ? ScrollSmoother.get() : null;
-            if (smootherInst) {
-                smootherInst.scrollTo(index * window.innerHeight, {
-                    duration: 0.9,
-                    ease: "power2.inOut",
-                    onComplete: () => {
-                        current = index;
-                        isAnimating = false;
-                        toggleBackToTop();
-                        updateCircleProgress();
-                    }
-                });
-            } else {
-                gsap.to(content, {
-                    y: -index * window.innerHeight,
-                    duration: 0.9,
-                    ease: "power2.inOut",
-                    onComplete: () => {
-                        current = index;
-                        isAnimating = false;
-                        toggleBackToTop();
-                        updateCircleProgress();
-                    }
-                });
-            }
+            gsap.to(content, {
+                y: -index * window.innerHeight,
+                duration: 0.9,
+                ease: "power2.inOut",
+                onComplete: () => {
+                    current = index;
+                    isAnimating = false;
+                    toggleBackToTop();
+                    updateCircleProgress();
+                }
+            });
         }
 
         Observer.create({
@@ -789,7 +775,7 @@
 
                 onDown: (self) => {
                 if (isAnimating) return;
-                    const forward = true;
+                     const forward = self && self.isTouch ? false : true;
                 if (current === 2 && window.pfHorizontalSwiper) {
                     if (window.pfHorizontalSwiper.animating) return;
                     if (forward) {
@@ -808,28 +794,7 @@
                 },
                 onUp: (self) => {
                 if (isAnimating) return;
-                    const forward = false;
-                if (current === 2 && window.pfHorizontalSwiper) {
-                    if (window.pfHorizontalSwiper.animating) return;
-                    if (forward) {
-                        if (!window.pfHorizontalSwiper.isEnd) {
-                            window.pfHorizontalSwiper.slideNext();
-                            return;
-                        }
-                    } else {
-                        if (!window.pfHorizontalSwiper.isBeginning) {
-                            window.pfHorizontalSwiper.slidePrev();
-                            return;
-                        }
-                    }
-                }
-                gotoSection(current + (forward ? 1 : -1));
-            }
-            ,
-            onChangeY: (self) => {
-                if (isAnimating) return;
-                if (!self || !self.event || self.event.type !== "wheel") return;
-                const forward = self.deltaY > 0;
+               const forward = self && self.isTouch ? true : false;
                 if (current === 2 && window.pfHorizontalSwiper) {
                     if (window.pfHorizontalSwiper.animating) return;
                     if (forward) {
