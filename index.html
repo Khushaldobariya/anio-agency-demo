@@ -776,7 +776,11 @@
 
                 onDown: (self) => {
                 if (isAnimating) return;
-                    const forward = true;
+                    // Wheel Down = Next (forward=true)
+                    // Touch Down (Swipe Down) = Prev (forward=false)
+                    const isWheel = self.event.type === "wheel";
+                    const forward = isWheel ? true : false;
+
                 if (current === 2 && window.pfHorizontalSwiper) {
                     if (window.pfHorizontalSwiper.animating) return;
                     if (forward) {
@@ -795,28 +799,11 @@
                 },
                 onUp: (self) => {
                 if (isAnimating) return;
-                    const forward = false;
-                if (current === 2 && window.pfHorizontalSwiper) {
-                    if (window.pfHorizontalSwiper.animating) return;
-                    if (forward) {
-                        if (!window.pfHorizontalSwiper.isEnd) {
-                            window.pfHorizontalSwiper.slideNext();
-                            return;
-                        }
-                    } else {
-                        if (!window.pfHorizontalSwiper.isBeginning) {
-                            window.pfHorizontalSwiper.slidePrev();
-                            return;
-                        }
-                    }
-                }
-                gotoSection(current + (forward ? 1 : -1));
-            },
-            onChangeY: (self) => {
-                if (isAnimating) return;
-                const isWheel = self && self.event && self.event.type === "wheel";
-                const isTouch = self && self.isTouch;
-                const forward = isWheel ? (self.deltaY > 0) : (isTouch ? (self.deltaY < 0) : (self.deltaY > 0));
+                    // Wheel Up = Prev (forward=false)
+                    // Touch Up (Swipe Up) = Next (forward=true)
+                    const isWheel = self.event.type === "wheel";
+                    const forward = isWheel ? false : true;
+
                 if (current === 2 && window.pfHorizontalSwiper) {
                     if (window.pfHorizontalSwiper.animating) return;
                     if (forward) {
