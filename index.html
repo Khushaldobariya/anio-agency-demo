@@ -773,9 +773,9 @@
             preventDefault: true,
             tolerance: 12,
 
-            onDown: (self) => {
+                onDown: (self) => {
                 if (isAnimating) return;
-                const forward = self && self.isTouch ? false : true;
+                    const forward = true;
                 if (current === 2 && window.pfHorizontalSwiper) {
                     if (window.pfHorizontalSwiper.animating) return;
                     if (forward) {
@@ -791,10 +791,10 @@
                     }
                 }
                 gotoSection(current + (forward ? 1 : -1));
-            },
-            onUp: (self) => {
+                },
+                onUp: (self) => {
                 if (isAnimating) return;
-                const forward = self && self.isTouch ? true : false;
+                    const forward = false;
                 if (current === 2 && window.pfHorizontalSwiper) {
                     if (window.pfHorizontalSwiper.animating) return;
                     if (forward) {
