@@ -189,7 +189,7 @@
     </div>
 
     <!-- Sidebar Menu -->
-  
+
     <!-- header Section Start-->
     <header class="header-area style-2 white font-alt">
         <div class="container-fluid one d-flex flex-nowrap align-items-center justify-content-between">
@@ -326,57 +326,7 @@
 
 
             <section class="section">
-                <!-- <div class="service-page-process-section mb-150">
-                <div class="service-page-process-wrapper">
-                    <div class="service-page-process-img">
-                        <img src="images/service-page-process-img.jpg" alt="">
-                    </div>
-                    <div class="process-wrap">
-                        <div class="container-fluid one">
-                            <div class="process-and-vector-area">
-                                <div class="service-page-process-vector">
-                                    <img src="images/service-page-process-section-vector.png" alt="" class="line-vector">
-                                </div>
-                                
-                                
-                                
-                                <div class="process-list">
-                                    <div class="single-process">
-                                        <span class="step-no">01</span>
-                                        <h2>Discovery & Consultation</h2>
-                                        <p>We believe every successful project starts with deep insights and a clear roadmap.</p>
-                                        <ul>
-                                            <li>+ Research, Ideation generate.</li>
-                                            <li>+ Founder calls, strategy workshop.</li>
-                                            <li>+ Strategic Planning</li>
-                                        </ul>
-                                    </div>
-                                    <div class="single-process">
-                                        <span class="step-no">02</span>
-                                        <h2>Design & Development</h2>
-                                        <p>Turning concepts into reality, our team transforms ideas into functional, beautiful solutions.</p>
-                                        <ul>
-                                            <li>+ UI/UX Components Creation.</li>
-                                            <li>+ Responsive & Front-End Development.</li>
-                                            <li>+ Code Check & Launch Preparation.</li>
-                                        </ul>
-                                    </div>
-                                    <div class="single-process">
-                                        <span class="step-no">03</span>
-                                        <h2>Project Test & Hand-off</h2>
-                                        <p>We believe every successful project starts with deep insights and a clear roadmap.</p>
-                                        <ul>
-                                            <li>+ Analytics Integration Setup.</li>
-                                            <li>+ Performance Monitoring Live.</li>
-                                            <li>+ Finally, Project Hand-off.</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
+            
                 <div class="portfolio-horizontal-slider-page">
                     <div class="swiper pf-horizontal-slider">
                         <div class="swiper-wrapper">
@@ -463,7 +413,8 @@
             <section class="section">
                 <div class="home4-contact-section" style="background-color: black; height: 100%;">
                     <div class="container one mt-150 mb-150">
-                        <h2 class="text-revel-anim" data-on-scroll="0">Let's Make <span>Something Great</span></h2>
+                        <!-- <h2 class="text-revel-anim" data-on-scroll="0">Let's Make <span>Something Great</span></h2> -->
+                         <h2 class="text-revel-anim">Let's Make <span>Something Great</span></h2>
 
                     </div>
                 </div>
@@ -482,10 +433,11 @@
 
                 </div>
             </section>
-            <section class="section">
-                <div class="home4-contact-section mb-150" style="background-color: black; height: 100%;">
+             <section class="section">
+                <div class="home4-contact-section" style="background-color: black; height: 100%;">
                     <div class="container one mt-150 mb-150">
-                        <h2 class="ttxi"revtlaani-="0">Let's Make <s0an>Something Great</s0an></h2>
+                        <h2 class="text-revel-anim" data-on-scroll="0">Let's Make <span>Something Great</span></h2>
+
                     </div>
                 </div>
             </section>
@@ -493,15 +445,17 @@
 
 
 
-            <section class="section">
+
+            <section class="section section-fade">
                 <!-- home4 Partner Section Start-->
                 <div class="home3-partner-section style-2 dark mt-120 ">
                     <div class="container one">
-                        <div class="title-area text-center mb-70 fade_anim" data-delay=".3" data-fade-from="top"
-           op              data-on-scroll="0">
-            0               <h3>We’ve 12K+ Trusted Clients in the World-wide</h3>
+                        <div class="title-area text-center mb-70 fade_anim" data-delay=".3" data-fade-from="top" op
+                            data-on-scroll="0">
+                            <h3>We’ve 12K+ Trusted Clients in the World-wide</h3>
                         </div>
-                        <ul class="partner-list fade_anim" data-delay=".3" data-on-scroll="0">       <li cl0ss="single-partner">
+                        <ul class="partner-list fade_anim" data-delay=".3" data-on-scroll="0">
+                            <li cl0ss="single-partner">
                                 <img src="images/partner-logo1.png" alt="">
                             </li>
                             <li class="single-partner">
@@ -710,6 +664,7 @@
                     isAnimating = false;
                     toggleBackToTop();
                     updateCircleProgress();
+                      animateRevealText(sections[current]);
                 }
             });
         }
@@ -719,12 +674,12 @@
             preventDefault: true,
             tolerance: 12,
 
-                onDown: (self) => {
+            onDown: (self) => {
                 if (isAnimating) return;
-                    // Wheel Down = Next (forward=true)
-                    // Touch Down (Swipe Down) = Prev (forward=false)
-                    const isWheel = self.event.type === "wheel";
-                    const forward = isWheel ? true : false;
+                // Wheel Down = Next (forward=true)
+                // Touch Down (Swipe Down) = Prev (forward=false)
+                const isWheel = self.event.type === "wheel";
+                const forward = isWheel ? true : false;
 
                 if (current === 2 && window.pfHorizontalSwiper) {
                     if (window.pfHorizontalSwiper.animating) return;
@@ -741,13 +696,13 @@
                     }
                 }
                 gotoSection(current + (forward ? 1 : -1));
-                },
-                onUp: (self) => {
+            },
+            onUp: (self) => {
                 if (isAnimating) return;
-                    // Wheel Up = Prev (forward=false)
-                    // Touch Up (Swipe Up) = Next (forward=true)
-                    const isWheel = self.event.type === "wheel";
-                    const forward = isWheel ? false : true;
+                // Wheel Up = Prev (forward=false)
+                // Touch Up (Swipe Up) = Next (forward=true)
+                const isWheel = self.event.type === "wheel";
+                const forward = isWheel ? false : true;
 
                 if (current === 2 && window.pfHorizontalSwiper) {
                     if (window.pfHorizontalSwiper.animating) return;
@@ -775,6 +730,64 @@
                 gotoSection(0);
             });
         }
+     function splitTextNodes(node) {
+         if (node.nodeType === 3) { // Text node
+             const text = node.textContent;
+             // Skip empty text nodes (e.g. whitespace between tags)
+             if (!text.trim() && text !== ' ') return;
+             
+             const frag = document.createDocumentFragment();
+             [...text].forEach(char => {
+                 const span = document.createElement("span");
+                 span.className = "char";
+                 if (char === " ") {
+                     span.innerHTML = "&nbsp;";
+                 } else {
+                     span.textContent = char;
+                 }
+                 frag.appendChild(span);
+             });
+             node.parentNode.replaceChild(frag, node);
+         } else if (node.nodeType === 1) { // Element node
+             const children = [...node.childNodes];
+             children.forEach(splitTextNodes);
+         }
+     }
+
+     function animateRevealText(section) {
+         if (!section) return;
+         const textElements = section.querySelectorAll(".text-revel-anim");
+         
+         textElements.forEach(text => {
+              if (text.classList.contains("animated")) return;
+              
+              // Split text recursively
+              splitTextNodes(text);
+
+              text.classList.add("animated");
+             
+             // Animate
+             gsap.to(text.querySelectorAll(".char"), {
+                 opacity: 1,
+                 y: 0,
+                 duration: 0.4,
+                 stagger: 0.03,
+                 ease: "power2.out"
+             });
+         });
+     }
+
+     // Trigger animation on load for the initial section
+     window.addEventListener("load", () => {
+         // Add a small delay to ensure everything is rendered
+         setTimeout(() => {
+             if (sections && sections.length > 0) {
+                 animateRevealText(sections[current]);
+             }
+         }, 100);
+     });
+
+        
     </script>
 
 

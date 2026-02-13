@@ -1944,7 +1944,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
-  // text-revel-anim
+  // text-revel-anim - Commented out as SplitText is missing
+  /*
   const anim_reveal = document.querySelectorAll(".text-revel-anim");
   anim_reveal.forEach((areveal) => {
     const getAttributeValue = (attr, defaultValue) =>
@@ -1980,6 +1981,7 @@ document.addEventListener('DOMContentLoaded', function() {
       areveal.anim = gsap.from(areveal.split.chars, animationProps);
     }
   });
+  */
 
   //Text Animation 2
   gsap.utils.toArray(".text-anim2").forEach((splitTextLine) => {
