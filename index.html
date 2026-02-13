@@ -24,6 +24,7 @@
     <link href="css/boxicons.min.css" rel="stylesheet">
     <!--  Style CSS  -->
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/custom-partner.css">
     <!-- Title -->
     <title></title>
     <link rel="icon" href="images/fav-icon.svg" type="image/gif" sizes="20x20">
@@ -326,7 +327,7 @@
 
 
             <section class="section">
-            
+
                 <div class="portfolio-horizontal-slider-page">
                     <div class="swiper pf-horizontal-slider">
                         <div class="swiper-wrapper">
@@ -413,8 +414,8 @@
             <section class="section">
                 <div class="home4-contact-section" style="background-color: black; height: 100%;">
                     <div class="container one mt-150 mb-150">
-                        <!-- <h2 class="text-revel-anim" data-on-scroll="0">Let's Make <span>Something Great</span></h2> -->
-                         <h2 class="text-revel-anim">Let's Make <span>Something Great</span></h2>
+
+                        <h2 class="text-revel-anim">Let's Make <span>Something Great</span></h2>
 
                     </div>
                 </div>
@@ -433,7 +434,7 @@
 
                 </div>
             </section>
-             <section class="section">
+            <section class="section">
                 <div class="home4-contact-section" style="background-color: black; height: 100%;">
                     <div class="container one mt-150 mb-150">
                         <h2 class="text-revel-anim" data-on-scroll="0">Let's Make <span>Something Great</span></h2>
@@ -450,12 +451,11 @@
                 <!-- home4 Partner Section Start-->
                 <div class="home3-partner-section style-2 dark mt-120 ">
                     <div class="container one">
-                        <div class="title-area text-center mb-70 fade_anim" data-delay=".3" data-fade-from="top" op
-                            data-on-scroll="0">
-                            <h3>We’ve 12K+ Trusted Clients in the World-wide</h3>
+                        <div class="title-area text-center mb-70">
+                            <h3 class="animated-text">We’ve 12K+ Trusted Clients in the World-wide</h3>
                         </div>
-                        <ul class="partner-list fade_anim" data-delay=".3" data-on-scroll="0">
-                            <li cl0ss="single-partner">
+                        <ul class="partner-list">
+                            <li class="single-partner">
                                 <img src="images/partner-logo1.png" alt="">
                             </li>
                             <li class="single-partner">
@@ -568,6 +568,8 @@
     <script src="js/jquery-3.7.1.min.js"></script>
     <script src="js/jquery-ui.js"></script>
 
+    <script src="https://unpkg.com/gsap@3/dist/gsap.min.js"></script>
+    <script src="https://unpkg.com/gsap@3/dist/ScrollTrigger.min.js"></script>
     <!-- Popper and Bootstrap JS -->
     <script src="js/bootstrap.min.js"></script>
     <script src="js/popper.min.js"></script>
@@ -664,7 +666,7 @@
                     isAnimating = false;
                     toggleBackToTop();
                     updateCircleProgress();
-                      animateRevealText(sections[current]);
+                    animateRevealText(sections[current]);
                 }
             });
         }
@@ -730,64 +732,86 @@
                 gotoSection(0);
             });
         }
-     function splitTextNodes(node) {
-         if (node.nodeType === 3) { // Text node
-             const text = node.textContent;
-             // Skip empty text nodes (e.g. whitespace between tags)
-             if (!text.trim() && text !== ' ') return;
-             
-             const frag = document.createDocumentFragment();
-             [...text].forEach(char => {
-                 const span = document.createElement("span");
-                 span.className = "char";
-                 if (char === " ") {
-                     span.innerHTML = "&nbsp;";
-                 } else {
-                     span.textContent = char;
-                 }
-                 frag.appendChild(span);
-             });
-             node.parentNode.replaceChild(frag, node);
-         } else if (node.nodeType === 1) { // Element node
-             const children = [...node.childNodes];
-             children.forEach(splitTextNodes);
-         }
-     }
+        function splitTextNodes(node) {
+            if (node.nodeType === 3) { // Text node
+                const text = node.textContent;
+                // Skip empty text nodes (e.g. whitespace between tags)
+                if (!text.trim() && text !== ' ') return;
 
-     function animateRevealText(section) {
-         if (!section) return;
-         const textElements = section.querySelectorAll(".text-revel-anim");
-         
-         textElements.forEach(text => {
-              if (text.classList.contains("animated")) return;
-              
-              // Split text recursively
-              splitTextNodes(text);
+                const frag = document.createDocumentFragment();
+                [...text].forEach(char => {
+                    const span = document.createElement("span");
+                    span.className = "char";
+                    if (char === " ") {
+                        span.innerHTML = "&nbsp;";
+                    } else {
+                        span.textContent = char;
+                    }
+                    frag.appendChild(span);
+                });
+                node.parentNode.replaceChild(frag, node);
+            } else if (node.nodeType === 1) { // Element node
+                const children = [...node.childNodes];
+                children.forEach(splitTextNodes);
+            }
+        }
 
-              text.classList.add("animated");
-             
-             // Animate
-             gsap.to(text.querySelectorAll(".char"), {
-                 opacity: 1,
-                 y: 0,
-                 duration: 0.4,
-                 stagger: 0.03,
-                 ease: "power2.out"
-             });
-         });
-     }
+        function animateRevealText(section) {
+            if (!section) return;
+            const textElements = section.querySelectorAll(".text-revel-anim");
+            const text = section.querySelectorAll(".animated-text");
 
-     // Trigger animation on load for the initial section
-     window.addEventListener("load", () => {
-         // Add a small delay to ensure everything is rendered
-         setTimeout(() => {
-             if (sections && sections.length > 0) {
-                 animateRevealText(sections[current]);
-             }
-         }, 100);
-     });
+            const partnerListItems = section.querySelectorAll(".partner-list li");
+            if (partnerListItems.length > 0) {
+                 gsap.fromTo(partnerListItems,
+                    { opacity: 0, y: 30 },
+                    { opacity: 1, y: 0, duration: 0.8, stagger: 0.15, ease: "power2.out" }
+                 );
+            }
 
-        
+            textElements.forEach(text => {
+                if (text.classList.contains("animated")) return;
+
+                // Split text recursively
+                splitTextNodes(text);
+
+                text.classList.add("animated");
+
+                // Animate
+                gsap.to(text.querySelectorAll(".char"), {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.4,
+                    stagger: 0.03,
+                    ease: "power2.out"
+                });
+            });
+            text.forEach(text => {
+                if (text.dataset.animInitialized) return;
+                text.dataset.animInitialized = true;
+                gsap.to(text, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1,
+                    ease: "power3.out"
+                });
+            })
+        }
+
+        // Trigger animation on load for the initial section
+        window.addEventListener("load", () => {
+            // Add a small delay to ensure everything is rendered
+            setTimeout(() => {
+                if (sections && sections.length > 0) {
+                    animateRevealText(sections[current]);
+                }
+            }, 100);
+        });
+
+        gsap.registerPlugin(ScrollTrigger);
+
+
+
     </script>
 
 
