@@ -261,7 +261,9 @@ body {
   color: var(--title-color);
   font-size: 18px;
   font-weight: 400;
-  line-height: 30px;
+  line-height: 30px;  height: 100%;
+            overflow: hidden;
+            overscroll-behavior: none;
 }
 body.portfolio-cursor #ball .ball-view-inner {
   background-color: var(--dark-white-color);
@@ -36384,3 +36386,29 @@ body.dark .pricing-plan-page .pricing-plan-tab-area .nav-area {
     .animated-text.active {
   opacity: 1;
 }
+ #smooth-wrapper {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+        }
+
+        #smooth-content {
+            will-change: transform;
+        }
+
+        .section {
+            height: 100vh;
+            /* Fallback for browsers that do not support dvh */
+            height: 100dvh;
+            width: 100vw;
+            overflow: hidden;
+        }
+
+        header.header-area.scrolled {
+            background-color: #000 !important;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+        }
