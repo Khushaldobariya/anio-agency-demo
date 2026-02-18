@@ -129,12 +129,20 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // sticky header
-  window.addEventListener("scroll", function () {
-    const header = document.querySelector("header.header-area");
-    if (header) {
-      header.classList.toggle("sticky", window.scrollY > 0);
-    }
-  });
+  // window.addEventListener("scroll", function () {
+  //   const header = document.querySelector("header.header-area");
+  //   if (header) {
+  //     header.classList.toggle("sticky", window.scrollY > 0);
+  //   }
+  // });
+
+  $(window).on("scroll", function () {
+  if ($(window).scrollTop() > 100) {
+    $("header.header-area").addClass("scrolled");
+  } else {
+    $("header.header-area").removeClass("scrolled");
+  }
+});
 
   // FancyBox Js
   $('[data-fancybox="gallery-01"]').fancybox({

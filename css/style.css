@@ -31671,9 +31671,9 @@ header.style-2.two {
 .portfolio-horizontal-slider-page .portfolio-horizontal-bottom-area .bottom-wrapper .portfolio-slider-btn-area .pf-slider-pagination .swiper-pagination-bullet.swiper-pagination-bullet-active::after {
   opacity: 1;
 }
-.portfolio-horizontal-slider-page .pf-horizontal-slider {
+/* .portfolio-horizontal-slider-page .pf-horizontal-slider {
   cursor: url(../images/portfolio-cursor.png), default;
-}
+} */
 
 /*=====================================
   99. Portfolio Parallax Page CSS
@@ -31938,7 +31938,7 @@ header.style-2.two {
 }
 .portfolio-parallax-slider-page .pf-parallax-slider {
   height: 100%;
-  cursor: url(../images/portfolio-cursor.png), default;
+  /* cursor: url(../images/portfolio-cursor.png), default; */
 }
 .portfolio-parallax-slider-page .pf-parallax-slider .swiper-wrapper {
   height: 100%;
@@ -36404,11 +36404,13 @@ body.dark .pricing-plan-page .pricing-plan-tab-area .nav-area {
             overflow: hidden;
         }
 
-        header.header-area.scrolled {
-            background-color: #000 !important;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1000;
-        }
+     header.header-area {
+  transition: opacity 0.4s ease, transform 0.4s ease;
+  will-change: opacity, transform;
+}
+
+header.header-area.scrolled {
+  opacity: 0;
+  transform: translateY(-100%);
+  pointer-events: none;
+}
