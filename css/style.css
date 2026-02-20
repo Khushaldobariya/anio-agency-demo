@@ -36404,13 +36404,21 @@ body.dark .pricing-plan-page .pricing-plan-tab-area .nav-area {
             overflow: hidden;
         }
 
-     header.header-area {
-  transition: opacity 0.4s ease, transform 0.4s ease;
-  will-change: opacity, transform;
+header.header-area {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  transform: translateY(0);
+  transition: transform 0.4s ease, background-color 0.4s ease;
+  background-color: transparent;
 }
 
-header.header-area.scrolled {
-  opacity: 0;
+header.header-area.hide-header {
   transform: translateY(-100%);
-  pointer-events: none;
+}
+
+header.header-area.scrolled-bg {
+  background-color: var(--black-color);
 }

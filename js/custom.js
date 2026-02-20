@@ -136,13 +136,13 @@ document.addEventListener('DOMContentLoaded', function() {
   //   }
   // });
 
-  $(window).on("scroll", function () {
-  if ($(window).scrollTop() > 100) {
-    $("header.header-area").addClass("scrolled");
-  } else {
-    $("header.header-area").removeClass("scrolled");
-  }
-});
+//   $(window).on("scroll", function () {
+//   if ($(window).scrollTop() > 100) {
+//     $("header.header-area").addClass("scrolled");
+//   } else {
+//     $("header.header-area").removeClass("scrolled");
+//   }
+// });
 
   // FancyBox Js
   $('[data-fancybox="gallery-01"]').fancybox({
@@ -3932,12 +3932,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
 
-            // Handle header background color
-            if (index > 0) {
-                header.classList.add("scrolled");
-            } else {
-                header.classList.remove("scrolled");
-            }
+     if (index > current) {
+        // Moving down → hide header
+        header.classList.add("hide-header");
+    } else if (index < current) {
+        // Moving up → show header
+        header.classList.remove("hide-header");
+    }
+     if (index === 0) {
+        header.classList.remove("scrolled-bg");
+    } else {
+        header.classList.add("scrolled-bg");
+    }
+
 
             gsap.to(content, {
                 y: -index * window.innerHeight,
